@@ -44,9 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apple.cs" />
+    <Compile Include="BadApple.cs" />
+    <Compile Include="BannerObject.cs" />
     <Compile Include="BaseObject.cs" />
-    <Compile Include="BigPoint.cs" />
-    <Compile Include="BlinkStar.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,9 +56,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SmallPoint.cs" />
-    <Compile Include="SpaceShip.cs" />
-    <Compile Include="Star.cs" />
+    <Compile Include="Snake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

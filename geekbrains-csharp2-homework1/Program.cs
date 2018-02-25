@@ -12,8 +12,8 @@ namespace geekbrains_csharp2_homework1
         static void Main(string[] args)
         {
             Form form = new Form();
-            form.Width = 800;
-            form.Height = 600;
+            form.Width = 820;
+            form.Height = 640;
             Game.Init(form);
             form.Show();
             Game.Draw();
