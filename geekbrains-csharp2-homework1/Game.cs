@@ -41,7 +41,7 @@ namespace geekbrains_csharp2_homework1
             Random r = new Random();
             int radius; //радиус больших планет
                        
-            _objs = new BaseObject[83];
+            _objs = new BaseObject[84];
             for (int i = 0; i < 10; i++) 
             {
                 //мигающие звезды
@@ -57,9 +57,6 @@ namespace geekbrains_csharp2_homework1
                 //точки
                 _objs[i] = new SmallPoint(new Point(r.Next(Game.Width), r.Next(Game.Height)), new Point(r.Next(3), 0), new Size(2, 2));
             }
-            //Большая планета
-            radius = r.Next(30, 150);
-            _objs[80] = new BigPoint(new Point(r.Next(50, Game.Width-50), r.Next(30, Game.Height-50)), new Point(r.Next(1,2), 0), new Size(radius, radius), r.Next(5));
 
             //Средняя планета
             radius = r.Next(20, 100);
@@ -67,6 +64,12 @@ namespace geekbrains_csharp2_homework1
 
             //Корабль
             _objs[82] = new SpaceShip(new Point(50, Game.Height/2), new Point(0, 2), new Size(30, 30));
+
+            //Пуля
+            _objs[80] = new Bullet(new Point(50, Game.Height / 2), new Point(-3, 0), new Size(5, 3));
+
+            //Астероид
+            _objs[83] = new Asteroid(new Point(650, Game.Height / 2), new Point(3, 0), new Size(50, 50), 20);
 
         }
 
