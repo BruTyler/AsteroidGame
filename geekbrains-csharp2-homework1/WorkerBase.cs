@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace geekbrains_csharp2_homework1
 {
+    //Базовый класс Работник
     abstract class WorkerBase : IComparable
     {
         public String Name { get; set; }

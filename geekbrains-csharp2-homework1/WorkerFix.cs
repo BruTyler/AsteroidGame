@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace geekbrains_csharp2_homework1
 {
-    class WorkerFix:WorkerBase
+    //Работник с фиксированной оплатой в месяц
+    class WorkerFix :WorkerBase
     {
-        
         protected double MonthSalary { get; set; }
 
         public WorkerFix(string name, double monthSalary):base(name)
