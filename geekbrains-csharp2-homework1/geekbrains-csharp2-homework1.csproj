@@ -44,13 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asteroid.cs" />
-    <Compile Include="BaseObject.cs" />
-    <Compile Include="BigPoint.cs" />
-    <Compile Include="BlinkStar.cs" />
-    <Compile Include="Bullet.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="ICollision.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -58,17 +51,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SmallPoint.cs" />
-    <Compile Include="SpaceShip.cs" />
-    <Compile Include="Star.cs" />
+    <Compile Include="WorkerBase.cs" />
+    <Compile Include="WorkerFix.cs" />
+    <Compile Include="WorkerTimeShift.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\spaceship.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -77,10 +67,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\asteroid.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\explode.gif" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
