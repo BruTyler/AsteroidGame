@@ -50,6 +50,7 @@
     <Compile Include="BlinkStar.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameObjectException.cs" />
     <Compile Include="ICollision.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\spaceship.jpg" />
   </ItemGroup>
   <ItemGroup>

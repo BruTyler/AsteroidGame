@@ -13,7 +13,7 @@ namespace geekbrains_csharp2_homework1
         Brush BrushColor;
         public BigPoint(Point pos, Point dir, Size size, int ColorNum):base(pos, dir, size)
         {
-            switch (ColorNum)
+            switch (ColorNum) //цвет планеты
             {
                 case 1:
                     BrushColor = Brushes.LightBlue;

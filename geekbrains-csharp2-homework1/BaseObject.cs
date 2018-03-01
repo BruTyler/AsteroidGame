@@ -12,22 +12,29 @@ namespace geekbrains_csharp2_homework1
         protected Point Pos; //позиция на поле
         protected Point Dir; //вектор движения
         protected Size Size; //размер объекта
-        
+        public int Life { get; protected set; } //время для показа взрыва астероида
+
         protected BaseObject(Point pos, Point dir, Size size)
         {
-            Pos = pos; 
-            Dir = dir; 
-            Size = size; 
+            Pos = pos;
+            Dir = dir;
+            Size = size;
+            CheckGameException();
         }
         public abstract void Draw();
-        public virtual void Update()
+        public abstract void Update();
+
+        public virtual void CheckGameException()
         {
-            Pos.X = Pos.X + Dir.X;
-            Pos.Y = Pos.Y + Dir.Y;
-            if (Pos.X < 0) Dir.X = -Dir.X;
-            if (Pos.X > Game.Width) Dir.X = -Dir.X;
-            if (Pos.Y < 0) Dir.Y = -Dir.Y;
-            if (Pos.Y > Game.Height) Dir.Y = -Dir.Y;
+            if (   Pos.X < 0
+                || Pos.Y < 0
+                || Math.Abs(Dir.X) > 5
+                || Math.Abs(Dir.Y) > 5
+                || Size.Width < 0
+                || Size.Height < 0
+                || Size.Width > 100
+                || Size.Height > 100 )
+                throw new GameObjectException();
         }
 
         public bool Collision(ICollision o) => o.Rect.IntersectsWith(this.Rect);

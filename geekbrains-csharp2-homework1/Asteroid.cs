@@ -10,51 +10,38 @@ namespace geekbrains_csharp2_homework1
     class Asteroid: BaseObject
     {
         protected Random r;
-        protected Boolean isIntersected;
-        public int Life { get; protected set; }
-        public int Power { get; set; }
+        public Boolean isIntersected; //признак пересечения с другим объектом
+        
         public Asteroid(Point pos, Point dir, Size size, int life):base(pos, dir, size)
         {
-            Life = life;
+            Life = life; //время отображения взрыва
             r = new Random();
             isIntersected = false;
-            Power = 1;
         }
 
         public override void Draw()
         {
-
-            if (!isIntersected)
-            {
-                switch (r.Next(50))
-                {
-                    case 1:
-                        isIntersected = true;
-                        break;
-                    default:
-                        Game.Buffer.Graphics.DrawImage(Properties.Resources.asteroid, Pos.X, Pos.Y, Size.Width, Size.Height);
-                        break;
-                }
-            }
-            else
-            {
-                Game.Buffer.Graphics.DrawImage(Properties.Resources.explode, Pos.X, Pos.Y, Size.Width, Size.Height);
-            }
-           
+            if (isIntersected) //проверка состоявшегося пересечения
+                //отрисовка взрыва 
+                Game.Buffer.Graphics.DrawImage(Properties.Resources.explode, Pos.X, Pos.Y, Size.Width, Size.Height);     
+            else    
+                //отрисовка целого астероида
+                Game.Buffer.Graphics.DrawImage(Properties.Resources.asteroid, Pos.X, Pos.Y, Size.Width, Size.Height);
         }
 
         public override void Update()
         {
-            if(!isIntersected)
+            if(!isIntersected) //проверка состоявшегося пересечения
             {
-                if (Pos.X != -1) Pos.X -= Dir.X;
-                if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -10;
+                //пересения не было - сдвинуть астероид
+                if (Pos.X != -1) Pos.X -= Dir.X; 
+                if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -10; //астероид вышел за пределы экрана
             }
             else
             {
-                Life--;
+                //Пересечение - уменьшить время отображения взрыва
+                Life--; 
             }
-
         }
     }
 }

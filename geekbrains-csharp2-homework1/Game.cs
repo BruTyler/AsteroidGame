@@ -10,12 +10,14 @@ namespace geekbrains_csharp2_homework1
 {
     static class Game
     {
+        
+        #region Init(Form form)
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
 
         public static int Width { get; set; }
         public static int Height { get; set; }
-        
+
         static Game()
         { }
 
@@ -26,6 +28,9 @@ namespace geekbrains_csharp2_homework1
             g = form.CreateGraphics();
             Width = form.Width;
             Height = form.Height;
+            if (Width < 0 || Width > 1000 || Height < 0 || Height > 1000)
+                throw new ArgumentOutOfRangeException();
+
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Load();
 
@@ -33,7 +38,9 @@ namespace geekbrains_csharp2_homework1
             timer.Start();
             timer.Tick += Timer_Tick;
         }
-
+        #endregion
+        
+        #region Load()
         private static BaseObject[] _objs; //все объекты на экране
         public static void Load()
         {
@@ -57,11 +64,14 @@ namespace geekbrains_csharp2_homework1
             _objs[81] = new SpaceShip(new Point(50, Game.Height/2), new Point(0, 2), new Size(30, 30));
 
             //Пуля
-            _objs[82] = new Bullet(new Point(75, Game.Height / 2), new Point(-3, 0), new Size(5, 3));
+            _objs[82] = new Bullet(new Point(75, Game.Height / 2), new Point(-4, 0), new Size(5, 3));
 
             //Астероид
             _objs[83] = new Asteroid(new Point(650, Game.Height/2 - 25), new Point(3, 0), new Size(50, 50), 20);
+            //Астероид для проверки собственного Exception - слишком большой размер обьекта
+            //_objs[83] = new Asteroid(new Point(650, Game.Height / 2 - 25), new Point(3, 0), new Size(171, 171), 20);
         }
+        #endregion
 
         #region Timer_Tick
         private static void Timer_Tick(object sender, EventArgs e)
@@ -93,7 +103,26 @@ namespace geekbrains_csharp2_homework1
         public static void Update()
         {
             foreach (BaseObject obj in _objs)
+            {
                 obj.Update();
+                //проверка столкновения астероида с пулей
+                if (obj is Asteroid && obj.Collision(_objs[82]))
+                {
+                    System.Media.SystemSounds.Hand.Play();
+                    ((Bullet)_objs[82]).isIntersected = true;
+                    ((Asteroid)_objs[83]).isIntersected = true;
+                }
+
+                //убираем с экрана взорвавшиеся объекты с истекшим таймером отображения
+                if (obj.Life==0)
+                {
+                    //и тут же перерисовываем эти объекты с дефолтными координатами
+                    if (obj is Bullet)
+                        _objs[82] = new Bullet(new Point(75, Game.Height / 2), new Point(-4, 0), new Size(5, 3));
+                    if (obj is Asteroid)
+                        _objs[83] = new Asteroid(new Point(650, Game.Height / 2 - 25), new Point(3, 0), new Size(50, 50), 20);
+                }
+            }
         }
         #endregion
      }
