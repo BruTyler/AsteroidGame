@@ -7,24 +7,19 @@ using System.Drawing;
 
 namespace geekbrains_csharp2_homework1
 {
-    class BaseObject
+    public abstract class BaseObject: ICollision
     {
-        protected Point Pos;
-        protected Point Dir;
-        protected Size Size;
-        public BaseObject(Point pos, Point dir, Size size)
+        protected Point Pos; //позиция на поле
+        protected Point Dir; //вектор движения
+        protected Size Size; //размер объекта
+        
+        protected BaseObject(Point pos, Point dir, Size size)
         {
-            Pos = pos;
-            Dir = dir;
-            Size = size;
+            Pos = pos; 
+            Dir = dir; 
+            Size = size; 
         }
-
-        public virtual void Draw()
-        {
-            Game.Buffer.Graphics.DrawEllipse(Pens.White, Pos.X, Pos.Y, Size.Width, Size.Height);
-            
-        }
-
+        public abstract void Draw();
         public virtual void Update()
         {
             Pos.X = Pos.X + Dir.X;
@@ -34,5 +29,10 @@ namespace geekbrains_csharp2_homework1
             if (Pos.Y < 0) Dir.Y = -Dir.Y;
             if (Pos.Y > Game.Height) Dir.Y = -Dir.Y;
         }
+
+        public bool Collision(ICollision o) => o.Rect.IntersectsWith(this.Rect);
+        //описываемый прямоугольник для расчета коллизий
+        public Rectangle Rect => new Rectangle(Pos, Size); 
+
     }
 }

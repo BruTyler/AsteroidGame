@@ -16,13 +16,13 @@ namespace geekbrains_csharp2_homework1
 
         public override void Draw()
         {
-            Game.Buffer.Graphics.DrawRectangle(new Pen(Color.Blue, 3), new Rectangle(Pos.X, Pos.Y, Size.Width, Size.Height));
+            Game.Buffer.Graphics.DrawRectangle(Pens.OrangeRed, Pos.X, Pos.Y, Size.Width, Size.Height);
         }
 
         public override void Update()
         {
             if (Pos.X != -1) Pos.X -= Dir.X;
-            if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -1;
+            if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -10;
         }
     }
 }

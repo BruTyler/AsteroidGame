@@ -4,6 +4,8 @@ using System;
 
 using System.Windows.Forms;
 
+//Работа с нажатиями клавиш - ToDo
+
 public class TryKey : Form
 {
     private char theKey = 'd';
@@ -65,8 +67,6 @@ public class TryKey : Form
     }
     public static void Main()
     {
-        double f = 1, f11 = 1, f4 = 5;
-        Console.WriteLine(f11);
         Application.Run(new TryKey());
 
     }

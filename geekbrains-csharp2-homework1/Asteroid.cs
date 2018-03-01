@@ -12,11 +12,13 @@ namespace geekbrains_csharp2_homework1
         protected Random r;
         protected Boolean isIntersected;
         public int Life { get; protected set; }
+        public int Power { get; set; }
         public Asteroid(Point pos, Point dir, Size size, int life):base(pos, dir, size)
         {
             Life = life;
             r = new Random();
             isIntersected = false;
+            Power = 1;
         }
 
         public override void Draw()
@@ -46,7 +48,7 @@ namespace geekbrains_csharp2_homework1
             if(!isIntersected)
             {
                 if (Pos.X != -1) Pos.X -= Dir.X;
-                if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -1;
+                if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -10;
             }
             else
             {
