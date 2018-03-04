@@ -12,7 +12,10 @@ namespace geekbrains_csharp2_homework1
         protected Point Pos; //позиция на поле
         protected Point Dir; //вектор движения
         protected Size Size; //размер объекта
-        public int Life { get; protected set; } //время для показа взрыва астероида
+
+        public int Life { get; protected set; } //время показа объекта
+        public delegate void PrintMessageHandler(string Message);
+        PrintMessageHandler printDelegate;
 
         protected BaseObject(Point pos, Point dir, Size size)
         {
@@ -20,7 +23,20 @@ namespace geekbrains_csharp2_homework1
             Dir = dir;
             Size = size;
             CheckGameException();
+
         }
+        public virtual void RegisterDelegate(PrintMessageHandler _delegate)
+        {
+            printDelegate += _delegate;
+        }
+
+        public virtual void PrintMessage(string msg)
+        {
+            if (printDelegate != null)
+                printDelegate(msg);
+        }
+
+
         public abstract void Draw();
         public abstract void Update();
 

@@ -34,6 +34,8 @@ namespace geekbrains_csharp2_homework1
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Load();
 
+            
+
             Timer timer = new Timer { Interval = 100 };
             timer.Start();
             timer.Tick += Timer_Tick;
@@ -62,9 +64,13 @@ namespace geekbrains_csharp2_homework1
 
             //Корабль
             _objs[81] = new SpaceShip(new Point(50, Game.Height/2), new Point(0, 2), new Size(30, 30));
+            _objs[81].RegisterDelegate(Console.WriteLine);
+            _objs[81].RegisterDelegate(PrintFile.Print);
 
             //Пуля
             _objs[82] = new Bullet(new Point(75, Game.Height / 2), new Point(-4, 0), new Size(5, 3));
+            _objs[82].RegisterDelegate(Console.WriteLine);
+            _objs[82].RegisterDelegate(PrintFile.Print);
 
             //Астероид
             _objs[83] = new Asteroid(new Point(650, Game.Height/2 - 25), new Point(3, 0), new Size(50, 50), 20);
@@ -118,7 +124,11 @@ namespace geekbrains_csharp2_homework1
                 {
                     //и тут же перерисовываем эти объекты с дефолтными координатами
                     if (obj is Bullet)
+                    {
                         _objs[82] = new Bullet(new Point(75, Game.Height / 2), new Point(-4, 0), new Size(5, 3));
+                        _objs[82].RegisterDelegate(Console.WriteLine);
+                        _objs[82].RegisterDelegate(PrintFile.Print);
+                    }
                     if (obj is Asteroid)
                         _objs[83] = new Asteroid(new Point(650, Game.Height / 2 - 25), new Point(3, 0), new Size(50, 50), 20);
                 }

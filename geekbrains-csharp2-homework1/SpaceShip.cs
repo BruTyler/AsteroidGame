@@ -15,6 +15,7 @@ namespace geekbrains_csharp2_homework1
         public override void Draw()
         {
             Game.Buffer.Graphics.DrawImage(Properties.Resources.spaceship, Pos.X, Pos.Y, Size.Width, Size.Height);
+            PrintMessage($"{DateTime.Now} Отрисовка {this.GetType().Name} координаты X={Pos.X} Y={Pos.Y} \r");
         }
 
         public override void Update()

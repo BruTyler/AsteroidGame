@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Reflection.Context;
 
 namespace geekbrains_csharp2_homework1
 {
@@ -19,6 +20,7 @@ namespace geekbrains_csharp2_homework1
         public override void Draw()
         {
             Game.Buffer.Graphics.DrawRectangle(Pens.OrangeRed, Pos.X, Pos.Y, Size.Width, Size.Height);
+            PrintMessage($"{DateTime.Now} Отрисовка {this.GetType().Name} координаты X={Pos.X} Y={Pos.Y} \r");
         }
 
         public override void Update()
