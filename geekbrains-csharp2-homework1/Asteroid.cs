@@ -34,8 +34,8 @@ namespace geekbrains_csharp2_homework1
             if(!isIntersected) //проверка состоявшегося пересечения
             {
                 //пересения не было - сдвинуть астероид
-                if (Pos.X != -1) Pos.X -= Dir.X; 
-                if (Pos.X > Game.Width || Pos.X < 0) Pos.X = -10; //астероид вышел за пределы экрана
+                Pos.X -= Dir.X; 
+                if (Pos.X < 0) Pos.X += Game.Width; //астероид вышел за пределы экрана
             }
             else
             {

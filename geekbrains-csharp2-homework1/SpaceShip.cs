@@ -10,13 +10,21 @@ namespace geekbrains_csharp2_homework1
     class SpaceShip:BaseObject
     {
         private int _energy = 100;
+        private int _score = 0;
         public int Energy => _energy;
+        public int Score => _score;
+        public static event Message MessageDie;
         public SpaceShip(Point pos, Point dir, Size size):base(pos, dir, size)
         {      }
 
         public void EnergyLow(int n)
         {
             _energy -= n;
+        }
+
+        public void AddScore(int n=1)
+        {
+            _score += n;
         }
 
         public override void Draw()
@@ -42,6 +50,7 @@ namespace geekbrains_csharp2_homework1
         }
         public void Die()
         {
+            MessageDie?.Invoke();
         }
 
 

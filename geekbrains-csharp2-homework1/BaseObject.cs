@@ -12,6 +12,7 @@ namespace geekbrains_csharp2_homework1
         protected Point Pos; //позиция на поле
         protected Point Dir; //вектор движения
         protected Size Size; //размер объекта
+        public delegate void Message();
 
         public int Life { get; protected set; } //время показа объекта
         public delegate void PrintMessageHandler(string Message);
@@ -44,8 +45,8 @@ namespace geekbrains_csharp2_homework1
         {
             if (   Pos.X < 0
                 || Pos.Y < 0
-                || Math.Abs(Dir.X) > 5
-                || Math.Abs(Dir.Y) > 5
+                || Math.Abs(Dir.X) > 50
+                || Math.Abs(Dir.Y) > 50
                 || Size.Width < 0
                 || Size.Height < 0
                 || Size.Width > 100
