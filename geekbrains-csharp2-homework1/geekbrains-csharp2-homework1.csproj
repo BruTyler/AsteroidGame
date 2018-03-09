@@ -53,6 +53,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameObjectException.cs" />
     <Compile Include="ICollision.cs" />
+    <Compile Include="MedKit.cs" />
     <Compile Include="PrintFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\explode.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-medkit_icon_55413.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

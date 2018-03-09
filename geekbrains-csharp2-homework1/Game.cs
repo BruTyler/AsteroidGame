@@ -54,6 +54,7 @@ namespace geekbrains_csharp2_homework1
         private static SpaceShip _ship; //корабль
         private static Bullet _bullet;
         private static Asteroid[] _asteroids;
+        private static MedKit[] _medkit;
 
         public static void Load()
         {
@@ -61,6 +62,9 @@ namespace geekbrains_csharp2_homework1
             int radius; //радиус больших планет
             _objs = new BaseObject[82];
             _asteroids = new Asteroid[3];
+            _medkit = new MedKit[2];
+
+
 
             for (int i = 0; i < 10; i++) //мигающие звезды
                 _objs[i] = new BlinkStar(new Point(r.Next(0, Game.Width), r.Next(0, Game.Height)), new Point(r.Next(4), 0), new Size(7, 7));
@@ -76,6 +80,9 @@ namespace geekbrains_csharp2_homework1
             _ship = new SpaceShip(new Point(50, Game.Height / 2), new Point(0, 2), new Size(30, 30));
             _ship.RegisterDelegate(Console.WriteLine);
             _ship.RegisterDelegate(PrintFile.Print);
+
+            _medkit[0] = new MedKit(new Point(699, r.Next(0, Game.Height)), new Point(r.Next(1, 10), 0), new Size(50, 50));
+            _medkit[0].RegisterDelegate(Console.WriteLine);
 
             //Астероиды
             for (var i = 0; i < _asteroids.Length; i++)
@@ -125,6 +132,10 @@ namespace geekbrains_csharp2_homework1
             _ship?.Draw();
             _bullet?.Draw();
 
+            foreach (MedKit obj in _medkit) obj?.Draw();
+
+            if (_medkit[0] !=null)             _medkit[0].Draw();
+
             if (_ship != null)
             {
                 Buffer.Graphics.DrawString("Energy: " + _ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
@@ -161,6 +172,16 @@ namespace geekbrains_csharp2_homework1
                 {
                     //и тут же перерисовываем эти объекты с дефолтными координатами
                     _asteroids[i] = new Asteroid(new Point(799, r.Next(0, Game.Height)), new Point(r.Next(1, 10), 0), new Size(50, 50), 20);
+                }
+            }
+
+            for (var i = 0; i < _medkit.Length; i++)
+            {
+                _medkit[i]?.Update();
+                if (_medkit[i] != null && _medkit[i].Collision(_ship))
+                {
+                    _medkit[i].Life  = 0;
+                    _ship.AddHealth();
                 }
             }
 

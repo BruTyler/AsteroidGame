@@ -14,7 +14,7 @@ namespace geekbrains_csharp2_homework1
         protected Size Size; //размер объекта
         public delegate void Message();
 
-        public int Life { get; protected set; } //время показа объекта
+        public int Life { get; set; } //время показа объекта
         public delegate void PrintMessageHandler(string Message);
         PrintMessageHandler printDelegate;
 
